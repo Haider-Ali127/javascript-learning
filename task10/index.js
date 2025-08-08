@@ -78,7 +78,7 @@ for(let i=0; i < split.length; i++){
         largest = split[i]
     }
 }
-console.log(largest)
+console.log(largest);
 
 
 
