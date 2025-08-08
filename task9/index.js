@@ -146,20 +146,37 @@
 // console.log(output);
 
 // Problem No.4 LEETCODE
-function special(str){
+// function special(str){
+//     for(let i = 0; i < str.length; i++){
+//         let isunique = true;
+
+//         for(let j=0; j < str.length; j++){
+//             if(i !== j && str[i] === str[j] ){
+//                 isunique = false;
+//             }
+//         }
+//     if(isunique){
+//         return i;
+//     }   
+// }
+//     return -1
+// }
+// console.log(special("loveleetcode"));
+ 
+
+// count method for leetcode question
+ function special(str){
+    let count = {}
+
+    for(let char of str){
+        count[char] = (count[char] || 0) + 1;
+
+    }
     for(let i = 0; i < str.length; i++){
-        let isunique = true;
-
-        for(let j=0; j < str.length; j++){
-            if(i !== j && str[i] === str[j] ){
-                isunique = false;
-            }
+        if(count[str[i]] === 1){
+            return i
         }
-
-    if(isunique){
-        return i;
-    }   
-}
+    }
     return -1
-}
-console.log(special("loveleetcode"));
+ }
+ console.log(special("adnan"));
