@@ -1,4 +1,4 @@
- // DOM MANUPULATION
+ // DOM MANiPULATION
 let tittle = document.getElementById("tittle");
 
 // now change the text
