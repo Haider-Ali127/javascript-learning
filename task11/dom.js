@@ -40,64 +40,64 @@
 // ------------PRACTISE QUESTION START ----------------------------//
 // Question no.1
 
-let para = document.getElementById("para");
-console.log(para.parentNode.id);
-console.log(para.parentNode.textContent);
+// let para = document.getElementById("para");
+// console.log(para.parentNode.id);
+// console.log(para.parentNode.textContent);
 
-let firstMsg = document.querySelector(".msg"); 
-console.log(firstMsg.innerText);
+// let firstMsg = document.querySelector(".msg"); 
+// console.log(firstMsg.innerText);
 
-let allMsgs = document.querySelectorAll(".msg"); 
-allMsgs.forEach(item => console.log(item.innerText)); 
-
-
-// question no.2
-const btn = document.querySelector("#colorBtn");
-const para = document.querySelector("#myPara");
-
-btn.addEventListener("click", function() {
-    para.style.backgroundColor = "yellow";
-    para.style.color = "red";
-});
+// let allMsgs = document.querySelectorAll(".msg"); 
+// allMsgs.forEach(item => console.log(item.innerText)); 
 
 
-// Question no.3
-  document.getElementById("addBtn").addEventListener("click", () => {
-    let input = document.getElementById("taskInput");
-     if(!input.value.trim())return;
+// // question no.2
+// const btn = document.querySelector("#colorBtn");
+// const para = document.querySelector("#myPara");
 
-    let li = document.createElement("li");
-    li.innerHTML = `${input.value} <button>Delete</button>`;
-    li.querySelector("button").onclick = () => li.remove();
+// btn.addEventListener("click", function() {
+//     para.style.backgroundColor = "yellow";
+//     para.style.color = "red";
+// });
 
-    document.getElementById("taskList").appendChild(li);
-    input.value = "";
-});
 
-// Question no.4
-let list1 = document.querySelector("#myList");
-list1.addEventListener("click", function(event) {
-    if (event.target.tagName === "LI") {
-        document.querySelectorAll("#myList li").forEach(li => li.style.background = "");
-        event.target.style.background = "lightblue";
-    }
-});
+// // Question no.3
+//   document.getElementById("addBtn").addEventListener("click", () => {
+//     let input = document.getElementById("taskInput");
+//      if(!input.value.trim())return;
+
+//     let li = document.createElement("li");
+//     li.innerHTML = `${input.value} <button>Delete</button>`;
+//     li.querySelector("button").onclick = () => li.remove();
+
+//     document.getElementById("taskList").appendChild(li);
+//     input.value = "";
+// });
+
+// // Question no.4
+// let list1 = document.querySelector("#myList");
+// list1.addEventListener("click", function(event) {
+//     if (event.target.tagName === "LI") {
+//         document.querySelectorAll("#myList li").forEach(li => li.style.background = "");
+//         event.target.style.background = "lightblue";
+//     }
+// });
  
-// Question no.5
+// // Question no.5
 
-let submit =  document.getElementById("myForm")
-submit.addEventListener("submit", function(event) {
-    event.preventDefault(); 
+// let submit =  document.getElementById("myForm")
+// submit.addEventListener("submit", function(event) {
+//     event.preventDefault(); 
 
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
+//     let name = document.getElementById("name").value.trim();
+//     let email = document.getElementById("email").value.trim();
 
-    if (name === "" || email === "") {
-        alert("Alert first fill your information!");
-    } else {
-        alert("Your form was submitted successfully");
-    }
-});
+//     if (name === "" || email === "") {
+//         alert("Alert first fill your information!");
+//     } else {
+//         alert("Your form was submitted successfully");
+//     }
+// });
 
 // LEET CODE QUESTION
 let counter = 0;

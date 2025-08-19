@@ -1,4 +1,4 @@
- //---------MINI PROJECT TO DO LIST SLOUTION-------------//
+//---------MINI PROJECT TO DO LIST SLOUTION-------------//
 let btn = document.getElementById("addBtn")
 btn.addEventListener("click", () => {
     let input = document.querySelector("Input");
