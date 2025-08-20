@@ -1,42 +1,16 @@
-// simple arrow function
-const haider = () => console.log("Hello Haider");
-haider();
+// -------2nd hour Topic ------------//
 
-// arrow function using parameters 
-const result3 = x => x * x * x; // cube find
-console.log(result3(3));
+// multi-line string
 
-// object return 
-const user = () => ({ name: "Haider", age: 19 });
-console.log(user());
-
-// arrows function in map 
-let arr = [1, 2, 3, 4, 5, 6]; // double each single value of array
-const doubled = arr.map(n => n * 2);
-console.log(doubled);
-
-let evens = arr.filter(n => n % n === 0);
-console.log(evens);
-
-let odd = arr.filter(n => n % 2 === 1);
-console.log(odd);
-
-// arrow func dont have theri own this
-const person = {
-    name: "Haider Ali",
-    normalfunc: function () {
-        console.log(this.name)
-    }
+let poem = `
+Roses are red
+flowers are red
+love is good
+`
+console.log(poem)
+//-------2nd Hour practise question----------------//
+function person2(name, age) {
+    console.log(`My name is ${name} and my age is ${age}`)
 }
-person.normalfunc();
+console.log(person2("Haider", 19));
 
-//-----------1 hour arrow fun practise question----------------------//
-// SIMPLE FUNCTION
-function square1(num) {
-    return num * num;
-}
-console.log(square1(5))
-
-// now convert in arrow function
-const square2 = x => x * x;
-console.log(square2(5));
