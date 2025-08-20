@@ -1,35 +1,40 @@
-//-----------3rd Hour started------------------------//
-// array destruction-----
-let arr1 = [2, 3, 4];
-let [a, b, c] = arr1;
-console.log(a);
-console.log(c);
-console.log(b);
+//  ------ HOUR 4 ---------------------//
+// ------------spread rest operators--------//
+// expanding arrays
+let arr5 = [1, 2, 3];
+let arr6 = [4, 5, 6];
+let combined = [...arr5, ...arr6];
+console.log(combined);
 
-//-----Default values---------------//
-let ar = [7];
-let [num1, num2 = 100] = ar;
-console.log(num1);
-console.log(num2);
+//spreading object to add pass new value and spread in array
+let pers = { name: "Haider", age: 19 };
+let updated = { ...pers, city: "karachi" };
+console.log(updated);
 
-//---------swapping variablesz------------------//
-let h = 1; d = 2;
-[h, d] = [d, h];
-console.log(h);
-console.log(d);
+// Rest operators--------
+let [first1, second, ...rest] = [10, 2, 30, 40, 50, 60];
+console.log(first1);
+console.log(second);
+console.log(rest);
 
-//-----------SKIPPING ARRAYS----------------//
-let arr4 = [100, 2, 350, 4];
-let [first, , third] = arr4;
-console.log(first); // 1
-console.log(third); // 3
+// rest with object destruction
+let obj = { id: 1, name: "haider", city: "karachi", age: 19 }
+let { id, ...details } = obj;
+console.log(`My id is ${id}`);
+console.log(details);
 
 
-//---------3rd hour practise question--------------//
-let person1 = { name: "Haider", age: 19, city: "karachi" }
-let { name: age } = person1;
-let { age: name } = person1;
-console.log(`my age is ${age}`);
-console.log(`my name is ${name}`);
+//----- 4hours practise question------------------//
+let arr7 = [10, 20, 30]
+let arr8 = [40, 50, 60]
+let spread = [...arr7, ...arr8]
+console.log(spread);
 
+//-------Second question-----------//
+
+const sum = (...nums) => {
+    return nums.reduce((addall, n) => addall + n);
+
+}
+console.log(sum(10, 20, 30, 40, 50));
 
