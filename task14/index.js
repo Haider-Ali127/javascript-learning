@@ -21,7 +21,7 @@ console.log(binary([2, 4, 7, 10, 15], 10));
 //--------------linear search-------------------------//
 function sum(nums, target) {
     for (let i = 0; nums.length; i++) {
-        if (target === nums[i]) {
+        if (target === nums[i]) {}
             return i
         }
     }
