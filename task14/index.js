@@ -11,7 +11,7 @@ function binary(nums, target) {
         } else if (nums[middle] < target) {
             start = middle + 1;
         } else {
-            end = middle - 1;
+            end = middle - 1
         }
     }
     return -1
