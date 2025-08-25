@@ -1,11 +1,10 @@
-// 2nd practical task
-// it is defined because you can call outside the loop using var which leaks your value and works in console.
-for (var i = 0; i < 3; i++) {
-    console.log("0 to 3 is: ", i)
-}
-console.log(i);
-// using let it is undefined you cant call it outside the loop
-for (let j = 0; j < 3; j++) {
-    console.log("0 to 3 is: ", j)
-}
-// console.log(j);
+// 3rd practical question
+// using var it shows undefined but not gives error because it store in TDZ(TEMPORARY DEAD ZONE) and will hosited but undefined 
+console.log(a)
+var a = 5;
+// using let and const you cannot use before decleration the variable.
+console.log(b)
+let b = 10;
+// it will be accesseble after decleration
+console.log(b);
+
