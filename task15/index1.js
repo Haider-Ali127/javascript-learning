@@ -1,39 +1,47 @@
-// global vardeclare outside any function or block are  global. they can accessed anywhere in code;
-let globalvar = "I am global variable";
-
-function showglobal() {
-    let globalvar = "HAIDER";
-    console.log(globalvar);
-}
-showglobal();
-console.log(globalvar);
-
-// function scope
-//Variables declared with var inside a function are scoped to that function.They cannot be accessed outside the function.
-
-function myfunction() {
-    var functionvar = "var inside the function";
-    console.log(functionvar)
-}
-myfunction();
-// console.log(functionvar); not accesseble outside.
-
-//Block Scope
-//Variables declared with let or const are block-scoped.They are only accessible inside { } (if, for, while, etc)
-
-if (true) {
-    let blockvar = " block scoped";
-    console.log(blockvar);
+// HOisting 
+// fully safe with function allow to call before decleration with others like let var const it is not accsesseble.
+function name() {
+    var a = "Haider";
+    console.log(a);
 }
 
-//console.log(blockvar); not accesseble outside.
+name();
+// console.log(a); not accsesseble
+//var hoisted but undefined;;
+console.log(b)
+var b = 10;
+console.log(b)
 
-for (let i = 0; i < 3; i++) {
-    console.log("INside loop: ", i)
-}
-console.log("outisde loop: ", i);
 
-for (var i = 0; i < 3; i++) {
-    console.log("INside loop: ", i)
+// Function decleration hopisted
+sayHello();
+
+function sayHello() {
+    console.log("Haider Ali");
 }
-console.log("outisde loop: ", i);
+
+// function expression not hoisted 
+sayHi();
+
+var sayHi = function () {  // In expression way
+    console.log("Hello");
+}
+
+console.log(a)
+console.log(b)
+console.log(c)
+
+var a = 11;
+let b = 10;
+const c = 10;
+
+sayHello();
+sayHi();
+
+function sayHello() {
+    console.log("Hello Haider");
+}
+// not hoisting func expression 
+var sayHi = function () {
+    console.log("Hi");
+};
