@@ -1,47 +1,52 @@
-// HOisting 
-// fully safe with function allow to call before decleration with others like let var const it is not accsesseble.
-function name() {
-    var a = "Haider";
-    console.log(a);
+// test scoping rules
+
+let glob = "global";
+function test() {
+    let local = "local"
+    console.log("outside fun: ", glob);
+    console.log("outside fun: ", local);
+}
+console.log(glob);
+// console.log(local);
+
+if (true) {
+    var x = 10;
+    let y = 20;
+    const z = 30;
+}
+// works with var not let and const
+console.log("x =", x);
+// console.log("y =", y);
+// console.log("z =", z);
+
+for (var i = 0; i < 3; i++) {
+    console.log(i);
+}
+console.log(i);
+
+// not work if change let with var it works
+for (var j = 0; j < 3; j++) {
+    console.log(j);
+}
+console.log(j);
+
+
+let a = "Global A";
+
+function outer() {
+    let b = "Outer B";
+
+    function inner() {
+        let c = "Inner C";
+        console.log("From inner:", a, b, c);
+        console.log("From inner:", c);
+    }
+
+    inner();
+    console.log(c)
+    console.log("From outer:", a, b, c);
+    // comes error c is not inner not accessible outside
+    console.log("From outer:", c)
 }
 
-name();
-// console.log(a); not accsesseble
-//var hoisted but undefined;;
-console.log(b)
-var b = 10;
-console.log(b)
-
-
-// Function decleration hopisted
-sayHello();
-
-function sayHello() {
-    console.log("Haider Ali");
-}
-
-// function expression not hoisted 
-sayHi();
-
-var sayHi = function () {  // In expression way
-    console.log("Hello");
-}
-
-console.log(a)
-console.log(b)
-console.log(c)
-
-var a = 11;
-let b = 10;
-const c = 10;
-
-sayHello();
-sayHi();
-
-function sayHello() {
-    console.log("Hello Haider");
-}
-// not hoisting func expression 
-var sayHi = function () {
-    console.log("Hi");
-};
+outer();
