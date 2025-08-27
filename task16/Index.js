@@ -1,21 +1,21 @@
-function getData(dataId, getNextData, getanotherData) { // 2s
-    setTimeout(() => {
-        console.log("data", dataId);
-        if (getNextData) {
-            getNextData();
-        }
-    }, 2000)
-}
+// PROMISES STARTED (states: pending, fulfilled, rejected).
 
-// callback for second data
-// callback hell also called nested callback
-getData(1, () => {
-    console.log("getting data2......")
-    getData(2, () => {
-        console.log("getting 3......")
-        getData(3, () => {
-            console.log("getting data4......")
-            getData(4);
-        })
+let promise = new Promise((resolve, reject) => {
+    console.log("I am a promise");
+    // resolve(123);
+    reject("some error occured");
+
+});
+
+function getData(dataId, getNextData) { // 5s
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // console.log("data", dataId);
+            // resolve("success");
+            reject("error occured"); // promise rejected
+            if (getNextData) {
+                getNextData();
+            }
+        }, 6000);
     });
-})
+}
