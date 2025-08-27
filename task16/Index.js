@@ -1,50 +1,34 @@
-// Asych means program works sequentially. and in js asyn works sequesntially but in between you make one funcion and settimeout like 4 sec then other consoles not wait 4 sec it prints itself then your timout func comes in the end.
-function one() {
-    console.log("10");
-}
-setTimeout(one, 1000);
 
-function two() {
-    console.log("9");
+// CALLBACKS IS A FUNCTION PASSED as a ARGUMENT TO ANOTHER FUNCTION.
+// IN callbacks you can pass the function as an argument and also passed the complete function its also valid syntax.
+// nested callback
+let age = 19;
+if (age >= 18) {
+    if (age >= 60) {
+        console.log("Senior")
+    } else {
+        console.log("middle child");
+    }
+} else {
+    console.log("child")
 }
-setTimeout(two, 2000)
 
-function three() {
-    console.log("8")
-}
-setTimeout(three, 3000)
 
-function four() {
-    console.log("7")
-}
-setTimeout(four, 4000)
+// function sum(a, b) {
+//     console.log(a + b);
+// }
 
-function five() {
-    console.log("6")
+function calculator(a, b, sumCallback) {
+    sumCallback(a, b);
 }
-setTimeout(five, 5000)
-function six() {
-    console.log("5")
-}
-setTimeout(six, 6000)
-function seven() {
-    console.log("4")
-}
-setTimeout(seven, 7000)
-function eight() {
-    console.log("3")
-}
-setTimeout(eight, 8000)
-function nine() {
-    console.log("2")
-}
-setTimeout(nine, 9000)
-function ten() {
-    console.log("1")
-}
-setTimeout(ten, 10000)
+// complete func passed. if write just sum in place of (a,b) so upper comment func runs.
+calculator(6, 6, (a, b) => {
+    console.log(a + b)
+})
 
-// using arrow function easy way not wants to make function name then outside set the timout.
-setTimeout(() => {
-    console.log("Happy Birthday Haider Ali🎂🎂🎂");
-}, 11000)
+// one more eg of callback
+function num() {
+    console.log("10")
+}
+// num callbacks as an argument 
+setTimeout(num, 2000)
