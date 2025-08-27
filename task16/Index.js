@@ -1,21 +1,41 @@
 // PROMISES STARTED (states: pending, fulfilled, rejected).
-
-let promise = new Promise((resolve, reject) => {
-    console.log("I am a promise");
-    // resolve(123);
-    reject("some error occured");
-
+const getPromise = () => {
+    return new Promise((resolve, reject) => {
+        console.log("I am a promise");
+        // resolve("success");
+        reject("REJECTED")
+    })
+}
+let promise = getPromise();
+promise.then((res) => {
+    console.log("fullfiled successfully", res);
+})
+promise.catch((err) => {
+    console.log("NETWORK ERROR", err);
 });
 
-function getData(dataId, getNextData) { // 5s
+// promise chaining
+function asyncfun1() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            // console.log("data", dataId);
-            // resolve("success");
-            reject("error occured"); // promise rejected
-            if (getNextData) {
-                getNextData();
-            }
-        }, 6000);
-    });
+            console.log("some data1");
+            resolve("Data fetched successfully....");
+        }, 4000)
+    })
 }
+function asyncfun2() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log("some data2");
+            resolve("Data fetched successfully....");
+        }, 4000)
+    })
+}
+console.log("fetching data1...")
+asyncfun1().then((res) => {
+    console.log(res)
+    console.log("fetching data2...")
+    asyncfun2().then((res) => {
+        console.log(res)
+    })
+})
