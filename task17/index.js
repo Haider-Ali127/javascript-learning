@@ -1,25 +1,92 @@
+// // closure = A function defined inside of another function, 
+//                  the inner function has access to the variables 
+//                  and scope of the outer function.
+//                  Allow for private variables and state maintenance
+//                  Used frequently in JS frameworks: React, Vue, Angular
 
-// Lexical scoping 
-function outer() {
-    // not defined 
-    console.log(secret)
-    let name = "Haider"
-    let age = 19
-    let name2 = "Hassan"
-    let age2 = 19
-    function inner() {
-        let secret = "my123"
-        console.log("My name is ", name)
-        console.log("My age is ", age)
+// It returns whole lexical scope of a function not just a scop.
+function makefunc() {
+    const name = "mozilla"
+    return function displayname() {
+        console.log(name)
     }
-    function innertwo() {
-        console.log("My name is ", name2)
-        console.log("My age is ", age2)
-        console.log(secret)
-    }
-    inner()
-    innertwo();
 }
-// outside function not run only access the varibales which is declare inside
+const myfunc = makefunc();
+myfunc();
+
+
+// practise e.g of closure
+
+// document.getElementById("orange").onclick = function () {
+//     document.body.style.backgroundColor = "orange"
+// }
+// document.getElementById("green").onclick = function () {
+//     document.body.style.backgroundColor = "green"
+// }
+
+// easier method through closure
+function clickHandler(color) {
+    return function () {
+        document.body.style.backgroundColor = `${color}`
+    }
+}
+document.getElementById("orange").onclick = clickHandler("orange");
+document.getElementById("green").onclick = clickHandler("green");
+
+
+function outer() {
+    let message = "hello"
+
+    function inner() {
+        console.log(message)
+    }
+    inner();
+}
 outer();
-console.log(name);
+
+function createcount() {
+    let count = 0;
+
+    function incr() {
+
+        count++
+        console.log(`count increase to ${count}`);
+    }
+    function getcount() {
+        return count;
+    }
+    return { incr, getcount }
+}
+
+const counter = createcount();
+counter.incr();
+counter.incr();
+counter.incr();
+counter.incr();
+console.log(`The current count is ${counter.getcount()}`)
+
+
+
+function creategame() {
+    let score = 0;
+    function increase(points) {
+        score += points;
+        console.log(`+${points}pts`)
+    }
+
+    function decrease(points) {
+        score -= points;
+        console.log(`-${points}pts`)
+    }
+
+
+    function getscore() {
+        return score
+    }
+    return { increase, decrease, getscore }
+}
+const game = creategame();
+game.increase(20);
+game.decrease(5);
+game.decrease(5);
+console.log(`The final score is ${game.getscore()}pts`);
