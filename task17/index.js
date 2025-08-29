@@ -1,92 +1,67 @@
-// // closure = A function defined inside of another function, 
-//                  the inner function has access to the variables 
-//                  and scope of the outer function.
-//                  Allow for private variables and state maintenance
-//                  Used frequently in JS frameworks: React, Vue, Angular
-
-// It returns whole lexical scope of a function not just a scop.
-function makefunc() {
-    const name = "mozilla"
-    return function displayname() {
-        console.log(name)
+// leetcode question
+function outer() {
+    let counter = 0;
+    function increase() {
+        counter++
+        return counter
     }
-}
-const myfunc = makefunc();
-myfunc();
-
-
-// practise e.g of closure
-
-// document.getElementById("orange").onclick = function () {
-//     document.body.style.backgroundColor = "orange"
-// }
-// document.getElementById("green").onclick = function () {
-//     document.body.style.backgroundColor = "green"
-// }
-
-// easier method through closure
-function clickHandler(color) {
-    return function () {
-        document.body.style.backgroundColor = `${color}`
+    function decrease() {
+        counter--
+        return counter
     }
+    return { increase, decrease }
 }
-document.getElementById("orange").onclick = clickHandler("orange");
-document.getElementById("green").onclick = clickHandler("green");
+let counter = outer();
+console.log(counter.increase());
+console.log(counter.increase());
+console.log(counter.increase());
+console.log(counter.decrease());
+console.log(counter.decrease());
+console.log(counter.decrease());
 
+
+// qustion no.2
+function multiplyBy(n) {
+    return function (x) {
+        return n * x;
+    };
+}
+const first = multiplyBy(2);
+console.log(first(5));
+
+const second = multiplyBy(5);
+console.log(second(10));
+
+
+
+// leet code last question
 
 function outer() {
-    let message = "hello"
-
-    function inner() {
-        console.log(message)
+    let counter = 0;
+    function increase() {
+        counter++
+        return counter
     }
-    inner();
+    return { increase }
 }
-outer();
-
-function createcount() {
-    let count = 0;
-
-    function incr() {
-
-        count++
-        console.log(`count increase to ${count}`);
-    }
-    function getcount() {
-        return count;
-    }
-    return { incr, getcount }
-}
-
-const counter = createcount();
-counter.incr();
-counter.incr();
-counter.incr();
-counter.incr();
-console.log(`The current count is ${counter.getcount()}`)
-
-
-
-function creategame() {
-    let score = 0;
-    function increase(points) {
-        score += points;
-        console.log(`+${points}pts`)
-    }
-
-    function decrease(points) {
-        score -= points;
-        console.log(`-${points}pts`)
-    }
-
-
-    function getscore() {
-        return score
-    }
-    return { increase, decrease, getscore }
-}
-const game = creategame();
-game.increase(20);
-game.decrease(5);
-game.decrease(5);
-console.log(`The final score is ${game.getscore()}pts`);
+let counter1 = outer();
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
+console.log(counter1.increase());
