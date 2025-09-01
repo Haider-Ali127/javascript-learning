@@ -1,28 +1,12 @@
-// last tasks. ques no.1
-// converting first code eg into async await
-async function getdata() {
-    try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-        const data = await response.json();
-        console.log(data.slice(0, 4))
-    } catch (error) {
-        console.log("error occured", error)
-    }
-
-}
-getdata();
-
-
-// converting 2nd code eg into async await
-
-async function getinfo() {
+// task2 last question
+async function getuserinfo(userid) {
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
             body: JSON.stringify({
                 title: "foo",
                 body: "bar",
-                userId: 1
+                userid: 1526
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -30,12 +14,9 @@ async function getinfo() {
 
         })
         const data = await response.json();
-        console.log(data)
+        console.log("user id of user is:", data.userid)
     } catch (error) {
         console.log("error occured", error)
     }
 }
-getinfo();
-
-
-
+getuserinfo();
