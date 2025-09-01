@@ -1,16 +1,12 @@
-// topic 3 POST REQUEST WITH FETCH
-
-fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "post",
-    body: JSON.stringify({
-        title: "HELLO WORLD",
-        body: "Hey My name is Haider Ali.",
-        userId: 1526
-    }),
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
+// Topic 4 Async/Await with fetch
+async function getPosts() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+        const data = await response.json();
+        console.log(data.slice(0, 4));
+    } catch (error) {
+        console.log("Error Occured", error)
     }
-})
-    .then(response => response.json())
-    .then(data => console.log("My data is : ", data))
-    .catch(error => console.error(error));
+}
+
+getPosts();
