@@ -1,19 +1,18 @@
-// practise ques no.3
-
-class person {
+// practical exercise no.4
+class student {
     constructor(grade) {
         this.grade = grade
     }
-}
-class student extends person {
-    constructor(name, grade) {
-        super(grade)
-        this.name = name
-    }
-    info() {
-        return `${this.name} : ${this.grade}`
+    static compare(s1, s2) {
+        if (s1.grade > s2.grade) {
+            return ` student 1 get higher grade`
+        } else {
+            return `student 2 get higher grade`
+        }
     }
 }
+const student1 = new student(40)
+const student2 = new student(80)
 
-const d1 = new student("Haider Ali", 90)
-console.log(d1.info())
+console.log(student.compare(student1, student2))
+console.log("you got a grade congratulations")
