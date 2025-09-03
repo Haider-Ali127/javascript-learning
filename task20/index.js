@@ -1,17 +1,19 @@
+// practise ques no.3
+
 class person {
-    constructor(name, age) {
-        this.name = name;
-        this._age = age;
-    }
-    get age() {
-        return this._age
-    }
-    set age(newage) {
-        this._age = newage
+    constructor(grade) {
+        this.grade = grade
     }
 }
-const check = new person("Haider", 19);
-console.log(check.age);
+class student extends person {
+    constructor(name, grade) {
+        super(grade)
+        this.name = name
+    }
+    info() {
+        return `${this.name} : ${this.grade}`
+    }
+}
 
-check.marks = 20
-console.log(check.marks)
+const d1 = new student("Haider Ali", 90)
+console.log(d1.info())
