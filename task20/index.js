@@ -1,13 +1,17 @@
-// practise exercise    QUES NO.1
-class car {
-    constructor(brand, model, year) {
-        this.brand = brand
-        this.model = model
-        this.year = year
+class person {
+    constructor(name, age) {
+        this.name = name;
+        this._age = age;
     }
-    getdetails() {
-        return ` ${this.brand} \n Model no. ${this.model} \n year ${this.year}`
+    get age() {
+        return this._age
+    }
+    set age(newage) {
+        this._age = newage
     }
 }
-const info = new car("Honda civic", "202", "2024");
-console.log(info.getdetails())
+const check = new person("Haider", 19);
+console.log(check.age);
+
+check.marks = 20
+console.log(check.marks)
