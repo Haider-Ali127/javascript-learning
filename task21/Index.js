@@ -1,37 +1,150 @@
-
-// simple task solved by private field property (#)) ES2022
-class BankAccount {
-    #balance;
-
-    constructor(initialBalance) {
-        this.#balance = initialBalance;
+// LAST LEET CODE QUESTIION
+function valid(str) {
+    let stack = [];
+    let map = {
+        ')': '(',
+        '}': '{',
+        ']': '['
     }
-    deposit(amount) {
-        if (amount > 0) {
-            this.#balance += amount;
-            console.log(`Deposited: ${amount}`);
+    for (let char of str) {
+        if (char === "(" || char === "{" || char === "[") {
+            stack.push(char)
         } else {
-            console.log("Deposit must be positive!");
+            if (stack.length === 0 || stack.pop() !== map[char]) {
+                return false
+            }
         }
     }
-    withdraw(amount) {
-        if (amount > 0 && amount <= this.#balance) {
-            this.#balance -= amount;
-            console.log(`Withdrawn: ${amount}`);
-        } else {
-            console.log("Insufficient funds or invalid amount!");
-        }
-    }
-    get balance() {
-        return this.#balance;
-    }
+    return stack.length === 0
 }
+console.log(valid("()[]{}"))
+console.log(valid("(]"))
+console.log(valid("({[]})"))
 
-const account = new BankAccount(10000);
 
-console.log("Initial Balance:", account.balance);
-account.deposit(5000);
-console.log("Balance after deposit:", account.balance);
-account.withdraw(3000);
-console.log("Balance after withdraw:", account.balance);
-account.withdraw(20000); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
