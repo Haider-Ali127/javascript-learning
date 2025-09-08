@@ -1,41 +1,37 @@
-//ENCAPSULATION USING  GETTER & SETTER METHOD 
-class Person {
-    constructor(name, age) {
-        this._name = name;
-        this._age = age;
-    }
 
-    get age() {
-        return this._age;
+// simple task solved by private field property (#)) ES2022
+class BankAccount {
+    #balance;
+
+    constructor(initialBalance) {
+        this.#balance = initialBalance;
     }
-    set age(value) {
-        if (value > 0) {
-            this._age = value;
+    deposit(amount) {
+        if (amount > 0) {
+            this.#balance += amount;
+            console.log(`Deposited: ${amount}`);
         } else {
-            console.log("Age must be positive!");
+            console.log("Deposit must be positive!");
         }
     }
-
-    get name() {
-        return this._name;
-    }
-
-    set name(value) {
-        if (value.trim() !== "") {
-            this._name = value;
+    withdraw(amount) {
+        if (amount > 0 && amount <= this.#balance) {
+            this.#balance -= amount;
+            console.log(`Withdrawn: ${amount}`);
         } else {
-            console.log("Name cannot be empty!");
+            console.log("Insufficient funds or invalid amount!");
         }
+    }
+    get balance() {
+        return this.#balance;
     }
 }
 
-const p1 = new Person("Haider", 19);
+const account = new BankAccount(10000);
 
-console.log(p1.age);
-p1.age = 25;
-console.log(p1.age);
-p1.age = -5;
-console.log(p1.age);
-
-p1.name = ""
-console.log(p1.name)
+console.log("Initial Balance:", account.balance);
+account.deposit(5000);
+console.log("Balance after deposit:", account.balance);
+account.withdraw(3000);
+console.log("Balance after withdraw:", account.balance);
+account.withdraw(20000); 
