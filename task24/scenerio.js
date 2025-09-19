@@ -54,6 +54,7 @@ function borrow(id) {
         if (book.id === id) {
             if (book.Available) {
                 console.log(`You borrowed: ${book.title}`);
+                book.Available = false;
             }
             else {
                 console.log(`Sorry, "${book.title}" is already sold out.`);
@@ -72,8 +73,5 @@ function allbook() {
 }
 
 borrow(101)
-borrow(108)
+borrow(102)
 allbook()
-console.log("when book not exist")
-borrow(1009)
-
