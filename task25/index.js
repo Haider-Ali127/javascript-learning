@@ -45,9 +45,9 @@ let food = [
 ]
 
 let total = 0
-function orderhere(allorder) {
+function orderhere(allorder, reset) {
     for (let order of allorder) {
-        let fooditem = null;
+        let fooditem = [];
         for (let item of food) {
             if (item.id === order.id) {
                 fooditem = item;
@@ -59,15 +59,22 @@ function orderhere(allorder) {
                 console.log(`You bought: ${order.quantity} x ${fooditem.name}`);
                 fooditem.available -= order.quantity;
                 total += fooditem.price * order.quantity;
+            }
+            else if (allorder === null) {
+                console.log(`Total : ${finalBill}`)
             } else {
                 console.log(`Order rejected: Not enough stock for ${fooditem.name}`);
             }
         } else {
             console.log(`Item with id ${order.id} not found`);
+            return reset;
         }
     }
-    let finalBill = Math.floor(total * 1.10);
-    console.log(`Bill with 10% gst Rs: ${finalBill}`)
+    let tax = total * 0.10
+    let finalBill = total + tax
+    console.log(`Your bill is : ${total}`)
+    console.log(`Total Bill with 10% tax Rs: ${finalBill}`)
+    console.log("Whats the next order....")
 }
 let allorder = [
     {
@@ -77,10 +84,36 @@ let allorder = [
     {
         id: 13,
         quantity: 4
+    },
+    {
+        id: 16,
+        quantity: 10
     }
 ];
 orderhere(allorder)
 
+let allorder2 = [
+    {
+        id: 14,
+        quantity: 4
+    },
+    {
+        id: 15,
+        quantity: 3
+    }
+]
+orderhere(allorder2)
+let allorder3 = [
+    {
+        id: 10,
+        quantity: 2
+    },
+    {
+        id: 8,
+        quantity: 3
+    }
+]
+orderhere(allorder3)
 
 // Leet code question task 25
 let arr = [2, 7, 11, 15];
@@ -93,4 +126,6 @@ function find(arr, target) {
         }
     }
 }
-console.log(find(arr, 9));
+console.log(find(arr, 17));
+
+
