@@ -123,4 +123,42 @@ enrolledstudent(103, student[1]);
 enrolledstudent(102, student[2]);
 enrolledstudent(104, student[4]);
 courseReport(102);
-mostpopcourse(); 
+mostpopcourse();
+
+
+// Task 26 leeet code problem
+function longstr(str) {
+    let maximum = 0;
+    for (let i = 0; i < str.length; i++) {
+        let arr = []
+        let length = 0
+        for (let j = i; j < str.length; j++) {
+            let c = str[j];
+            let repeat = false;
+            for (let k = 0; k < str.length; k++) {
+                if (arr[k] === c) {
+                    repeat = true;
+                    break;
+                }
+            }
+            if (repeat) {
+                break;
+            }
+            arr.push(c);
+            length++;
+
+            if (length > maximum) {
+                maximum = length
+            }
+        }
+    }
+    return maximum;
+}
+console.log(longstr("abcabcbb"));
+console.log(longstr("bbbbb"));
+console.log(longstr("pwwkew"));
+
+
+// Time complexity: O(n³) three nested loops (i, j, k) means it gets slow for long strings.
+
+// Space complexity: O(n).
