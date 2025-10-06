@@ -1,62 +1,51 @@
 // Task 28 job board aggregator
 async function jobboard() {
-    let companiesData = await (await fetch("https://jsonplaceholder.typicode.com/users")).json();
-    let jobsData = await (await fetch("https://jsonplaceholder.typicode.com/todos")).json();
+    try {
+        let companiesresponse = await fetch("https://jsonplaceholder.typicode.com/users")
+        let jobsresponse = await fetch("https://jsonplaceholder.typicode.com/todos");
 
-    let companies = [];
-    for (let i = 0; i < 3; i++) {
-        companies.push({ id: companiesData[i].id, name: companiesData[i].name, jobs: [] });
-    }
-
-    let jobs = [];
-    for (let i = 0; i < 4; i++) jobs.push(jobsData[i]);
-
-    for (let i = 0; i < jobs.length; i++) {
-        for (let j = 0; j < companies.length; j++) {
-            if (companies[j].id === jobs[i].userId) companies[j].jobs.push(jobs[i].title);
+        if (!companiesresponse.ok || !jobsresponse.ok) {
+            console.log("failed fetch");
         }
-    }
-    console.log("--- Jobs Grouped by Company ---");
-    for (let i = 0; i < companies.length; i++) {
-        console.log(companies[i].name + ":");
-        if (companies[i].jobs.length) {
-            for (let k = 0; k < companies[i].jobs.length; k++) {
-                console.log(" - " + companies[i].jobs[k]);
+        const companiesdata = await companiesresponse.json();
+        const jobsData = await jobsresponse.json();
+        const companies = companiesdata.map(c => ({
+            id: c.id,
+            name: c.name,
+            jobs: []
+        }));
+        jobsData.forEach(job => {
+            const company = companies.find(c => c.id === job.userId);
+            if (company) company.jobs.push(job.title);
+        });
+        const allJobs = companies.flatMap(c => c.jobs);
+        const sortedJobs = allJobs.sort((a, b) => b.length - a.length);
+        const result = {
+            groupedCompanies: companies,
+            topJobs: sortedJobs.slice(0, 4),
+            noJobCompanies: companies
+                .filter(c => c.jobs.length === 0)
+                .map(c => c.name)
+        };
+        console.log("---Jobs Grouped by Company---");
+        result.groupedCompanies.forEach(c => {
+            console.log(`${c.name}:`);
+            if (c.jobs.length) {
+                c.jobs.forEach(job => console.log(` - ${job}`));
+            } else {
+                console.log(" - No jobs listed");
             }
-        } else console.log(" - No jobs listed");
+        });
+        const maxCompany = companies.reduce((max, c) =>
+            c.jobs.length > max.jobs.length ? c : max
+        );
+        console.log(`Company with Most Open Jobs: ${maxCompany.name} ${maxCompany.jobs.length} jobs`);
+        console.log("Top 4 Jobs by Title Length:");
+        result.topJobs.forEach((job, i) => console.log(`${i + 1}. ${job}`));
+        console.log(`Companies with No Jobs: ${result.noJobCompanies.length}`);
+        return result;
+    } catch (error) {
+        console.log("Error occured...");
     }
-
-    let maxCompany = companies[0];
-    for (let i = 1; i < companies.length; i++) {
-        if (companies[i].jobs.length > maxCompany.jobs.length) maxCompany = companies[i];
-    }
-    console.log("\nCompany with Most Open Jobs: " + maxCompany.name + " (" + maxCompany.jobs.length + " jobs)\n");
-    let allJobs = [];
-    for (let i = 0; i < companies.length; i++) {
-        for (let j = 0; j < companies[i].jobs.length; j++) {
-            allJobs.push(companies[i].jobs[j]);
-        }
-    }
-    for (let i = 0; i < allJobs.length - 1; i++) {
-        for (let j = i + 1; j < allJobs.length; j++) {
-            if (allJobs[j].length > allJobs[i].length) {
-                let temp = allJobs[i];
-                allJobs[i] = allJobs[j]
-                allJobs[j] = temp;
-
-            }
-        }
-    }
-    console.log("Top 4 Jobs by Title Length:");
-    for (let i = 0; i < allJobs.length && i < 4; i++) {
-        console.log((i + 1) + ". " + allJobs[i]);
-    }
-    let noJobs = [];
-    for (let i = 0; i < companies.length; i++) {
-        if (companies[i].jobs.length === 0) {
-            noJobs.push(companies[i].name);
-        }
-    }
-    console.log("Companies with No Jobs:There are " + noJobs.length + " companies with no jobs");
 }
 jobboard();
